@@ -1,0 +1,18 @@
+def solution(n, times):
+    start = 0
+    end = times[-1] * n
+    while start <= end:
+        mid = (start + end) // 2
+        person = 0
+        for i in times:
+            person += mid // i
+            if person >= n: break
+
+        if person >= n:
+            answer = mid
+            end = mid - 1
+
+        elif person < n:
+            start = mid + 1
+
+    return answer
