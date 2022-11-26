@@ -1,0 +1,22 @@
+def solution(board, moves):
+    stack = []
+    stack_ = -1
+    answer = []
+    result = 0
+    for i in range(0,len(board)):
+        for j in range(0,len(board)):
+            if board[j][i] != 0:
+                stack.append(j)
+                break
+    for i in moves:
+        if stack[i-1] <= len(board)-1:
+            answer.append(board[stack[i-1]][i-1])
+            stack[i-1] += 1
+            stack_ += 1
+        if stack_ >= 1:
+            if answer[stack_] == answer[stack_-1]:
+                stack_ -= 2
+                result += 2
+                answer.pop()
+                answer.pop()            
+    return result
