@@ -1,0 +1,16 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+double solution(vector<int> numbers) {
+    double answer = 0;
+    int _len = numbers.size();
+    for (int i = 0; i < _len; i++)
+        answer += numbers[i];
+    return answer/_len;
+}
+/*
+#import <numeric> 사용하면 쉽게 배열 합을 구할 수가 있다
+int sum = accumulate(begin(numbers), end(numbers),0);
+*/
