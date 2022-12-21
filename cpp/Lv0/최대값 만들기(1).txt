@@ -1,0 +1,10 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int solution(vector<int> numbers) {
+    int len = numbers.size();
+    sort(numbers.begin(), numbers.end());
+    return numbers[len-1]*numbers[len-2];
+}
