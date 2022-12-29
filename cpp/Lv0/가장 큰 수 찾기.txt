@@ -1,0 +1,21 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<int> solution(vector<int> array) {
+    vector<int> answer;
+    int max_index = -1;
+    int max_value = -1;
+    for (int i = 0; i < array.size(); i++)
+    {
+        if (array[i] > max_value)
+        {
+            max_value = array[i];
+            max_index = i;
+        }
+    }
+    answer.push_back(max_value);
+    answer.push_back(max_index);
+    return answer;
+}
