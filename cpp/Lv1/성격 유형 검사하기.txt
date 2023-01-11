@@ -1,0 +1,75 @@
+#include <string>
+#include <vector>
+#include <math.h>
+using namespace std;
+
+string solution(vector<string> survey, vector<int> choices) {
+    string answer = "";
+    int temp[25] = {};
+    for (int i = 0; i < choices.size(); i++)
+    {
+        int b = choices[i] - 4;
+        if (b < 0)
+            temp[int(survey[i][0]-'A')]+=abs(b);
+        else if (b > 0)
+            temp[int(survey[i][1]-'A')]+=b;
+    }
+    if (temp[int('R'-'A')] < temp[int('T'-'A')])
+        answer.push_back('T');
+    else
+        answer.push_back('R');
+
+    if (temp[int('C'-'A')] < temp[int('F'-'A')])
+        answer.push_back('F');
+    else
+        answer.push_back('C');
+
+    if (temp[int('J'-'A')] < temp[int('M'-'A')])
+        answer.push_back('M');
+    else
+        answer.push_back('J');
+
+    if (temp[int('A'-'A')] < temp[int('N'-'A')])
+        answer.push_back('N');
+    else
+        answer.push_back('A');
+
+    return answer;
+}
+
+/*
+다른 사람의 풀이
+map으로 간단하게 해결
+#include <string>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+char MBTI[4][2] = {
+    {'R','T'},
+    {'C','F'},
+    {'J','M'},
+    {'A','N'}
+};
+
+string solution(vector<string> survey, vector<int> choices) {
+    string ans = "";
+    map<char,int> score;
+
+    for(int i = 0; i < survey.size(); ++i){
+        if(choices[i] < 4){
+            score[survey[i][0]] += (4 - choices[i]);
+        } else{
+            score[survey[i][1]] += (choices[i] - 4); 
+        }
+    }
+
+    for(int i = 0; i < 4; ++i){
+        if(score[MBTI[i][0]] >= score[MBTI[i][1]]) ans += MBTI[i][0];
+        else ans += MBTI[i][1];
+    }
+
+    return ans;
+}
+*/
