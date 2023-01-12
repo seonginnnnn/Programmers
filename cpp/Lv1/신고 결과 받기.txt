@@ -1,0 +1,27 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+
+using namespace std;
+
+vector<int> solution(vector<string> id_list, vector<string> report, int k) {
+    vector<int> answer;
+    string a,b;
+    map<string, vector<string>> m;
+    map<string, int> m2;
+    for (auto i : id_list)
+    {
+        m[i] = {};
+        m2[i] = 0;
+    }
+    for (auto i : report)
+    {
+        a = i.substr(0,i.find(" "));
+        b = i.substr(i.find(" ") + 1, i.size());
+        if (find(m[b].begin(),m[b].end(),a)==m[b].end()) m[b].push_back(a);
+    }
+    for (auto i : id_list) if (m[i].size() >= k) for (auto j : m[i]) m2[j] += 1;
+    for (auto i : id_list) answer.push_back(m2[i]);
+    return answer;
+}
