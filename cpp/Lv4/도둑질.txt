@@ -1,0 +1,18 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<int> money) {
+    vector<int> a = { 0 };
+    vector<int> b = { 0 };
+    for (int i = 0; i < money.size()-1; i++) a.push_back(money[i]);
+    for (int i = 1; i < money.size(); i++) b.push_back(money[i]);
+    for (int i = 2; i < money.size(); i++)
+    {
+        a[i] = max(a[i - 1], a[i-2] + a[i]);
+        b[i] = max(b[i - 1] , b[i - 2] + b[i]);
+    }
+    return max(a[a.size() - 1], b[b.size() - 1]);
+}
